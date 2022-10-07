@@ -29,25 +29,27 @@ const Main = () => {
     
     const content = movies.results.map(movie => <Grid item xs={3}> <Movie key={movie.id} movie={movie} /></Grid>)
 
-    const lastPage = () => setPage(page-1)
+    const previuspage = () => setPage(page-1)
 
-    const firstPage = () => setPage(page+1)
+    const nextpage = () => setPage(page+1)
 
-    const pagesArray = Array(movies.total_pages).fill().map((_, index) => index + 1)
+    // const pagesArray = Array(movies.total_pages).fill().map((_, index) => index + 1)
 
     const nav = (
+        <Grid container justifyContent="center">
             <Grid>
-            {/* <button onClick={firstPage} center disabled={isPreviousData || page === 1}>&lt;&lt;</button> */}
-            <IconButton onClick={firstPage} center  color="secondary" aria-label="add an alarm">
-                <ArrowForwardIcon />
-            </IconButton>
-            {/* Removed isPreviousData from PageButton to keep button focus color instead */}
-            {/* {pagesArray.map(pg => <PageButton key={pg} pg={pg} setPage={setPage} />)} */}
-            {/* <button onClick={lastPage} disabled={isPreviousData || page === movies.total_pages}>&gt;&gt;</button> */}
-            <IconButton onClick={lastPage} disabled={page===1} color="secondary" aria-label="previus">
-                <ArrowBackIcon />
+                {/* <button onClick={nextpage} center disabled={isPreviousData || page === 1}>&lt;&lt;</button> */}
+                <IconButton  onClick={nextpage}  color='info' aria-label="add an alarm">
+                    <ArrowForwardIcon  fontSize="large" />
                 </IconButton>
-                </Grid>
+                {/* Removed isPreviousData from PageButton to keep button focus color instead */}
+                {/* {pagesArray.map(pg => <PageButton key={pg} pg={pg} setPage={setPage} />)} */}
+                {/* <button onClick={previuspage} disabled={isPreviousData || page === movies.total_pages}>&gt;&gt;</button> */}
+                <IconButton onClick={previuspage} disabled={page===1} color='info' aria-label="previus">
+                    <ArrowBackIcon  fontSize="large"/>
+                </IconButton>
+            </Grid>
+        </Grid>
     )
 
     return (
