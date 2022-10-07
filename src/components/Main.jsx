@@ -1,8 +1,9 @@
 import { useQuery } from 'react-query'
-import { getUsersPage } from './api/axios'
+import { getMoviesPage } from '../api/axios.js'
 import { useState } from 'react'
-import User from './User'
 import PageButton from './PageButton'
+import Movie from './Movie'
+import { Grid } from '@mui/material'
 
 const Main = () => {
     const [page, setPage] = useState(1)
@@ -11,39 +12,42 @@ const Main = () => {
         isLoading,
         isError,
         error,
-        data: users,
+        data: movies,
         isFetching,
         isPreviousData,
-    } = useQuery(['/users', page], () => getUsersPage(page), {
+    } = useQuery(['/discover/movie', page], () => getMoviesPage(page), {
         keepPreviousData: true
     })
 
-    if (isLoading) return <p>Loading Users...</p>
+    if (isLoading) return <div className="ldBar"></div>
 
     if (isError) return <p>Error: {error.message}</p>
+    // movies.results.map(movie => console.log(movie))
+    
+    const content = movies.results.map(movie => <Movie key={movie.id} movie={movie} />)
 
-    const content = users.data.map(user => <User key={user.id} user={user} />)
+    const lastPage = () => setPage(page+1)
 
-    const lastPage = () => setPage(users.total_pages)
+    const firstPage = () => setPage(page-1)
 
-    const firstPage = () => setPage(1)
-
-    const pagesArray = Array(users.total_pages).fill().map((_, index) => index + 1)
+    const pagesArray = Array(movies.total_pages).fill().map((_, index) => index + 1)
 
     const nav = (
         <nav className="nav-ex2">
             <button onClick={firstPage} disabled={isPreviousData || page === 1}>&lt;&lt;</button>
             {/* Removed isPreviousData from PageButton to keep button focus color instead */}
-            {pagesArray.map(pg => <PageButton key={pg} pg={pg} setPage={setPage} />)}
-            <button onClick={lastPage} disabled={isPreviousData || page === users.total_pages}>&gt;&gt;</button>
+            {/* {pagesArray.map(pg => <PageButton key={pg} pg={pg} setPage={setPage} />)} */}
+            <button onClick={lastPage} disabled={isPreviousData || page === movies.total_pages}>&gt;&gt;</button>
         </nav>
     )
 
     return (
         <>
             {nav}
-            {isFetching && <span className="loading">Loading...</span>}
+            {isFetching && <div class="ldBar"></div>}
+            <Grid container>
             {content}
+            </Grid>
         </>
     )
 }
