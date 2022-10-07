@@ -54,7 +54,7 @@ const Main = () => {
 
     return (
         <>
-            <Grid container justifyContent="center"style={{"color":"#FF0000"}}>
+            <Grid container justifyContent="center"style={{"color":"#00FFFF"}}>
             <Typography variant='h2' >MOVIE LIST</Typography>
             </Grid>
             
