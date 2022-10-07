@@ -12,6 +12,7 @@ const Main = () => {
     const [page, setPage] = useState(1)
 
     const {
+        isLoading,
         isError,
         error,
         data: movies,
@@ -20,7 +21,7 @@ const Main = () => {
         keepPreviousData: true
     })
 
-    // if (isLoading) return <div className="ldBar"></div>
+    if (isLoading) return <div className="ldBar"></div>
 
     if (isError) return <p>Error: {error.message}</p>
     // movies.results.map(movie => console.log(movie))
