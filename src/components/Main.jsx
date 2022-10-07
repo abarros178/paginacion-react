@@ -1,7 +1,7 @@
 import { useQuery } from 'react-query'
 import { getMoviesPage } from '../api/axios.js'
 import { useState } from 'react'
-import PageButton from './PageButton'
+// import PageButton from './PageButton'
 import Movie from './Movie'
 import { CircularProgress, Grid, IconButton, Typography } from '@mui/material'
 // import '../Css/Main.css'
@@ -12,12 +12,10 @@ const Main = () => {
     const [page, setPage] = useState(1)
 
     const {
-        isLoading,
         isError,
         error,
         data: movies,
         isFetching,
-  
     } = useQuery(['/discover/movie', page], () => getMoviesPage(page), {
         keepPreviousData: true
     })
