@@ -3,7 +3,7 @@ import { getMoviesPage } from '../api/axios.js'
 import { useState } from 'react'
 // import PageButton from './PageButton'
 import Movie from './Movie'
-import { CircularProgress, Grid, IconButton, Typography } from '@mui/material'
+import { Box, CircularProgress, Grid, IconButton, Typography } from '@mui/material'
 // import '../Css/Main.css'
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
@@ -59,7 +59,7 @@ const Main = () => {
             
             {nav}
             {
-            isFetching ? <Grid center> <CircularProgress /></Grid>:
+            isFetching ? <Box container sx={{display: "flex"}} justifyContent="center" > <CircularProgress /></Box>:
                 <>
             <Grid container spacing={1}>
             {content}
