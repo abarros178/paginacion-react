@@ -1,9 +1,9 @@
 import { useQuery } from 'react-query'
 import { getMoviesPage } from '../api/axios.js'
 import { useState } from 'react'
-import PageButton from './PageButton'
+// import PageButton from './PageButton'
 import Movie from './Movie'
-import { CircularProgress, Grid, IconButton, Typography } from '@mui/material'
+import { CircularProgress, Container, Grid, IconButton, Typography } from '@mui/material'
 // import '../Css/Main.css'
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
@@ -22,12 +22,12 @@ const Main = () => {
         keepPreviousData: true
     })
 
-    // if (isLoading) return <div className="ldBar"></div>
+    if (isLoading) return <div className="ldBar"></div>
 
     if (isError) return <p>Error: {error.message}</p>
     // movies.results.map(movie => console.log(movie))
     
-    const content = movies.results.map(movie => <Grid item xs={3}> <Movie key={movie.id} movie={movie} /></Grid>)
+    const content = movies.results.map(movie => <Grid item xs={12} sm={6}  md={4} > <Movie key={movie.id} movie={movie} /></Grid>)
 
     const previuspage = () => setPage(page-1)
 
@@ -54,20 +54,23 @@ const Main = () => {
 
     return (
         <>
-            <Grid container justifyContent="center"style={{"color":"#00FFFF"}}>
-            <Typography variant='h2' >MOVIE LIST</Typography>
+        <Grid container sx={{backgroundColor:"background.main"}}>
+        <Container>
+            <Grid container justifyContent="center" sx={{color:"secondary.main"}}>
+            <Typography  variant='h2' >MOVIE LIST</Typography>
             </Grid>
             
             {nav}
             {
             isFetching ? <Grid center> <CircularProgress /></Grid>:
                 <>
-            <Grid container spacing={1}>
+            <Grid container rowSpacing={{xs:10,sm:5,md:2}} columnSpacing={2}>
             {content}
             </Grid>
             </>
             }
-
+        </Container>
+        </Grid>
         </>
     )
 }
