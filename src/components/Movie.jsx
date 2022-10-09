@@ -18,7 +18,7 @@ const Movie = ({ movie }) => {
     return (
         <>
         { 
-        <Card sx={{ maxWidth: 345 }}>
+        <Card sx={{ maxWidth: "100%",height:"320px" }}>
         <CardActionArea>
           <CardMedia
             component="img"
@@ -31,7 +31,7 @@ const Movie = ({ movie }) => {
               {movie.original_title}
             </Typography>
             <Typography variant="body2" color="text.secondary">
-             {movie.overview}
+             {movie.overview.substring(0,250)+(movie.overview.length>250 ? "...":"")}
             </Typography>
           </CardContent>
         </CardActionArea>
