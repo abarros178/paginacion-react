@@ -4,8 +4,8 @@ import { useState } from 'react'
 // import PageButton from './PageButton'
 import Movie from './Movie'
 
-import { Box, CircularProgress, Grid, IconButton, Typography } from '@mui/material'
-import { CircularProgress, Container, Grid, IconButton, Typography } from '@mui/material'
+// import { Box, CircularProgress, Grid, IconButton, Typography } from '@mui/material'
+import { Box, CircularProgress, Container, Grid, IconButton, Typography } from '@mui/material'
 // import '../Css/Main.css'
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
